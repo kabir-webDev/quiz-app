@@ -1,30 +1,43 @@
-import React, { useEffect } from "react";
-import "./Question.css";
-import { useState } from "react";
+import React from "react";
 
-const API_URL =
-  "https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple";
+const Button = ({ answer }) => (
+  <button className="option_style">{answer}</button>
+);
 
-function Question() {
-  const [question, setQuestion] = useState([]);
-  useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setQuestion(data.results);
-      });
-  }, []);
-
+function Question({
+  handleAnswer,
+  data: { question, correct_answer, incorrect_answers },
+}) {
+  const shuffledAnswer = [correct_answer, ...incorrect_answers].sort(
+    () => Math.random() - 0.5
+  );
   return (
-    <div className="container">
-      <span className="question_section">
-        <h2 className="question">This is the question Section.</h2>
-      </span>
-      <div>
-        <button className="option_style">Option A</button>
-        <button className="option_style">Option B</button> <br />
-        <button className="option_style">Option C</button>
-        <button className="option_style">Option D</button>
+    <div>
+      <div className="container">
+        <span className="question_section">
+          <h2
+            className="question"
+            dangerouslySetInnerHTML={{ __html: question }}
+          />
+        </span>
+        <div>
+          <Button
+            onCLick={() => handleAnswer(shuffledAnswer[0])}
+            answer={shuffledAnswer[0]}
+          />
+          <Button
+            onCLick={() => handleAnswer(shuffledAnswer[1])}
+            answer={shuffledAnswer[1]}
+          />
+          <Button
+            onCLick={() => handleAnswer(shuffledAnswer[2])}
+            answer={shuffledAnswer[2]}
+          />
+          <Button
+            onCLick={() => handleAnswer(shuffledAnswer[3])}
+            answer={shuffledAnswer[3]}
+          />
+        </div>
       </div>
     </div>
   );

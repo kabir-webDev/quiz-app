@@ -14,22 +14,20 @@ function Question({
   );
   return (
     <div>
+      <span className="question_section">
+        <h2
+          className="question"
+          dangerouslySetInnerHTML={{ __html: question }}
+        />
+      </span>
       <div className="container">
-        <span className="question_section">
-          <h2
-            className="question"
-            dangerouslySetInnerHTML={{ __html: question }}
+        {shuffledAnswers.map((answer) => (
+          <button
+            className="option_style"
+            onClick={() => handleAnswer(answer)}
+            dangerouslySetInnerHTML={{ __html: answer }}
           />
-        </span>
-        <div>
-          {shuffledAnswers.map((answer) => (
-            <button
-              className="option_style"
-              onClick={() => handleAnswer(answer)}
-              dangerouslySetInnerHTML={{ __html: answer }}
-            />
-          ))}
-        </div>
+        ))}
       </div>
     </div>
   );

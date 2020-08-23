@@ -1,15 +1,15 @@
 import React from "react";
 import "./Question.css";
 
-const Button = ({ answer, className }) => (
-  <button className={`option_style ${className}`}>{answer}</button>
-);
+// const Button = ({ answer, className }) => (
+//   <button className={`option_style ${className}`}>{answer}</button>
+// );
 
 function Question({
   handleAnswer,
   data: { question, correct_answer, incorrect_answers },
 }) {
-  const shuffledAnswer = [correct_answer, ...incorrect_answers].sort(
+  const shuffledAnswers = [correct_answer, ...incorrect_answers].sort(
     () => Math.random() - 0.5
   );
   return (
@@ -22,30 +22,19 @@ function Question({
           />
         </span>
         <div>
-          <Button
-            className={correct_answer === shuffledAnswer[0] ? "purp" : ""}
-            onClick={() => handleAnswer(shuffledAnswer[0])}
-            answer={shuffledAnswer[0]}
-          />
-          <Button
-            className={correct_answer === shuffledAnswer[1] ? "purp" : ""}
-            onClick={() => handleAnswer(shuffledAnswer[1])}
-            answer={shuffledAnswer[1]}
-          />
-          <Button
-            className={correct_answer === shuffledAnswer[2] ? "purp" : ""}
-            onClick={() => handleAnswer(shuffledAnswer[2])}
-            answer={shuffledAnswer[2]}
-          />
-          <Button
-            className={correct_answer === shuffledAnswer[3] ? "purp" : ""}
-            onClick={() => handleAnswer(shuffledAnswer[3])}
-            answer={shuffledAnswer[3]}
-          />
+          {shuffledAnswers.map((answer) => (
+            <button
+              className="option_style"
+              onClick={() => handleAnswer(answer)}
+              dangerouslySetInnerHTML={{ __html: answer }}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 }
-
+// {` option_style ${
+//                 correct_answer === answer ? "purp" : ""
+//               }`}
 export default Question;

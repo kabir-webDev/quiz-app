@@ -1,7 +1,8 @@
 import React from "react";
+import "./Question.css";
 
-const Button = ({ answer }) => (
-  <button className="option_style">{answer}</button>
+const Button = ({ answer, className }) => (
+  <button className={`option_style ${className}`}>{answer}</button>
 );
 
 function Question({
@@ -22,19 +23,23 @@ function Question({
         </span>
         <div>
           <Button
-            onCLick={() => handleAnswer(shuffledAnswer[0])}
+            className={correct_answer === shuffledAnswer[0] ? "purp" : ""}
+            onClick={() => handleAnswer(shuffledAnswer[0])}
             answer={shuffledAnswer[0]}
           />
           <Button
-            onCLick={() => handleAnswer(shuffledAnswer[1])}
+            className={correct_answer === shuffledAnswer[1] ? "purp" : ""}
+            onClick={() => handleAnswer(shuffledAnswer[1])}
             answer={shuffledAnswer[1]}
           />
           <Button
-            onCLick={() => handleAnswer(shuffledAnswer[2])}
+            className={correct_answer === shuffledAnswer[2] ? "purp" : ""}
+            onClick={() => handleAnswer(shuffledAnswer[2])}
             answer={shuffledAnswer[2]}
           />
           <Button
-            onCLick={() => handleAnswer(shuffledAnswer[3])}
+            className={correct_answer === shuffledAnswer[3] ? "purp" : ""}
+            onClick={() => handleAnswer(shuffledAnswer[3])}
             answer={shuffledAnswer[3]}
           />
         </div>

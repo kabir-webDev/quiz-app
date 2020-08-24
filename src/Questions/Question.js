@@ -6,6 +6,7 @@ import "./Question.css";
 // );
 
 function Question({
+  showAnswers,
   handleAnswer,
   data: { question, correct_answer, incorrect_answers },
 }) {

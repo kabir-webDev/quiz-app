@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <Header />
       {currentIndex >= questions.length ? (
-        <h1>Your Score is : {score}</h1>
+        <h1 className="score">Your Score is : {score}</h1>
       ) : (
         <>
           <Question
